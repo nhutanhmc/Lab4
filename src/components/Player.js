@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
-
+import { Link } from 'react-router-dom';
+import Rating from '@mui/material/Rating';
 export default function PlayersPresentation({ players }) {
   const [player, setPlayer] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
 
   const hidePopup = () => {
     setShowPopup(false);
-    if (!showPopup) window.location.href = "/#";
+
   };
 
   const hidePopup1 = () => {
@@ -24,13 +24,12 @@ export default function PlayersPresentation({ players }) {
           <div className="col col-sm-3 col-md-3" key={player.id}>
             <div className="card">
               <img 
-              width="305"
-              height="250"
+
+              height="300"
+              maxWidth="100%"
               src={player.img} />
-              <h1>{player.id}</h1>
               <h2 className="title">{player.title}</h2>
-              <h3>{player.nation}</h3>
-              <h3>{player.year}</h3>
+
               <p>
                 <button
                   onClick={() => {
@@ -59,8 +58,12 @@ export default function PlayersPresentation({ players }) {
               allowFullScreen
               title="Video Player"
             ></iframe>
+            <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
             <h3>Nội dung: {player.detail}</h3>
             <h3>Thời gian: {player.time}</h3>
+            <Link to={`/bill/${player.id}`}>
+                                <button>Đặt vé</button>
+                            </Link>
             <a className="close" href="#close" onClick={hidePopup}>
               &times;
             </a>
