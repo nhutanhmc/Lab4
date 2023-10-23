@@ -79,14 +79,13 @@ export default function Navigation() {
                   </Link>
                 </a>
               </li>
-              <li>
-                <a href="#" onClick={toggle}>
+              
+            </ul>
+            <a href="#" onClick={toggle}>
                   <LightbulbIcon
                     style={{ color: theme.color, textDecoration: `none` }}
                   />
                 </a>
-              </li>
-            </ul>
             <form class="d-flex" role="search">
               <input
                 class="form-control me-2"

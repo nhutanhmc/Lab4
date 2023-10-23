@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
+import "./Player.css"
 export default function PlayersPresentation({ players }) {
   const [player, setPlayer] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -52,12 +53,13 @@ export default function PlayersPresentation({ players }) {
           <div className="popup">
             <iframe
               width="555"
-              height="300"
+              height="400"
               src={player.video} // Đường link YouTube nằm trong trường video của đối tượng player
               frameBorder="0"
               allowFullScreen
               title="Video Player"
             ></iframe>
+            <div>
             <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
             <h3>Nội dung: {player.detail}</h3>
             <h3>Thời gian: {player.time}</h3>
@@ -69,6 +71,7 @@ export default function PlayersPresentation({ players }) {
             </a>
             {/* player.info should be defined in your film objects */}
             <div className="content">{player.info}</div>
+            </div>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ const Flims = [
     title: "Batman",
     year: "1977",
     nation: "USA",
-    detail: "Batman[a] is a superhero appearing in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and debuted in the 27th issue of the comic book Detective Comics on March 30, 1939. In the DC Universe continuity, Batman is the alias of Bruce Wayne,",
+    detail: " The character was created by artist Bob Kane and writer Bill Finger, and debuted in the 27th issue of the comic book Detective Comics on March 30, 1939. In the DC Universe continuity, Batman is the alias of Bruce Wayne,",
     time: "1h45p",
     video: "https://www.youtube.com/embed/v8ItGrI-Ou0",
     cost: "45.000 VND"
