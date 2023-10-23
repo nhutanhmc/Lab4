@@ -51,7 +51,7 @@ export default function PlayersPresentation({ players }) {
 
         <div id="popup" className="overlay">
           <div className="popup">
-            <iframe
+            <iframe className="if"
               width="555"
               height="400"
               src={player.video} // Đường link YouTube nằm trong trường video của đối tượng player
