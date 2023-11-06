@@ -104,9 +104,12 @@ export default function Navigation() {
               }}
               class="btn btn-outline-success"
             >
-              <a href="#popup2" id="openPopup">
-                Create
-              </a>
+              <Link
+                    to={"/add"}
+                    style={{ color: theme.color, textDecoration: `none` }}
+                  >
+                    Create
+                  </Link>
             </button>
             <a href="#"></a>
           </div>

@@ -13,11 +13,6 @@ export default function PlayersPresentation({ players }) {
 
   };
 
-  const hidePopup1 = () => {
-    setShowPopup(false);
-    
-  };
-
   return (
     <div onClick={hidePopup} className="container player">
       <div className="row row-content">
@@ -64,7 +59,7 @@ export default function PlayersPresentation({ players }) {
             <h3>Nội dung: {player.detail}</h3>
             <h3>Thời gian: {player.time}</h3>
             <Link to={`/bill/${player.id}`}>
-                                <button>Đặt vé</button>
+                                <button>Chỉnh sửa</button>
                             </Link>
             <a className="close" href="#close" onClick={hidePopup}>
               &times;
@@ -72,72 +67,6 @@ export default function PlayersPresentation({ players }) {
             {/* player.info should be defined in your film objects */}
             <div className="content">{player.info}</div>
             </div>
-          </div>
-        </div>
-
-        <div id="popup2" className="overlay">
-          <div className="popup">
-            <h2>Thêm phim mới</h2>
-
-            <form class="row g-3">
-              <div class="col-md-6">
-                <label for="inputTitle" class="form-label">
-                  Title:
-                </label>
-                <input type="text" class="form-control" id="inputTitle" />
-              </div>
-              <div class="col-md-6">
-                <label for="inputYear" class="form-label">
-                  Năm phát hành:
-                </label>
-                <input type="text" class="form-control" id="inputYear" />
-              </div>
-              <div class="col-12">
-                <label for="inputND" class="form-label">
-                  Nội dung:
-                </label>
-                <input type="text" class="form-control" id="inputND" />
-              </div>
-              <div class="col-12">
-                <label for="inputImg" class="form-label">
-                  Image
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  class="form-control"
-                  id="inputImg"
-                />
-              </div>
-              <div class="col-md-6">
-                <label for="inputTime" class="form-label">
-                  Thời lượng:
-                </label>
-                <input type="text" class="form-control" id="inputTime" />
-              </div>
-
-              <div class="col-md-2">
-                <label for="inputCountry" class="form-label">
-                  Quốc gia:
-                </label>
-                <input type="text" class="form-control" id="inputCountry" />
-              </div>
-              <div class="col-12">
-                <label for="inputLink" class="form-label">
-                  Link Video:
-                </label>
-                <input type="text" class="form-control" id="inputLink" />
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary" id="create">
-                  Create
-                </button>
-              </div>
-            </form>
-            <a className="close" href="#close" onClick={hidePopup1}>
-              &times;
-            </a>
-            {/* player.info should be defined in your film objects */}
           </div>
         </div>
       </div>

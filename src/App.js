@@ -8,11 +8,13 @@ import Flims from "./components/Flims";
 import Contact from "./components/Contact";
 import Pagination from "./components/Pagination";
 import Bill from "./components/Bill";
+import Edit from "./components/Edit";
+import Add from "./components/Add";
 import { Route, Routes } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 function App() {
   const appStyle = {
-    backgroundImage: 'url("assets/images/bg.jpg")',
+    backgroundImage: 'url("assets/images/hehe.jpg")',
     backgroundSize: "cover", // Chỉnh để ảnh nền bao phủ hết phần giao diện
     backgroundRepeat: "no-repeat", // Loại bỏ lặp lại
     backgroundAttachment: "fixed", // Cố định ảnh nền
@@ -44,7 +46,9 @@ function App() {
       <div className="midle">
         <Routes>
           <Route path="/contact" element={<Contact />} />
+          <Route path="/add" element={<Add />} />
           <Route path="/bill/:id" element={<Bill />} />
+          <Route path="/edit/:id" element={<Edit />} />
           <Route
             path="/home"
             element={

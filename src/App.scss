@@ -1,37 +1,5 @@
-.popup-container .popup {
-  margin: 70px auto;
-  padding: 5px;
-  background: #fff;
-  border-radius: 5px;
-  width: 30%;
-  position: relative;
-  transition: all 5s ease-in-out;
-}
-.popup-container .popup img {
-  width: 100%;
-}
-.popup-container .popup h2 {
-  margin-top: 0;
-  color: #333;
-  font-family: Tahoma, Arial, sans-serif;
-}
-.popup-container .popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-.popup-container .popup .close:hover {
-  color: #06D85F;
-}
-.popup-container .popup .content {
-  max-height: 30%;
-  overflow: auto;
-}
+@import 'popup';
+
 
 .App {
   text-align: center;
@@ -47,6 +15,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -70,9 +39,11 @@
     transform: rotate(360deg);
   }
 }
+
 /* .navbar-dark {
   background-color: #512da8;
 } */
+
 .footer {
   background-color: #D1C4E9;
   margin: 0px auto;
@@ -80,11 +51,11 @@
   margin-bottom: 0px;
 }
 
-.player {
+.player{
   margin-top: 65px;
 }
 
-.card {
+.card{
   text-align: center;
 }
 
@@ -113,48 +84,42 @@
   width: 30%;
   position: relative;
   transition: all 5s ease-in-out;
-}
+  }
+  .popup img{ width: 100%;}
 
-.popup img {
-  width: 100%;
-}
-
-.popup h2 {
+  .popup h2 {
   margin-top: 0;
   color: #333;
   font-family: Tahoma, Arial, sans-serif;
-}
+  }
 
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
 
-.popup .close:hover {
-  color: #06D85F;
-}
+  .popup .close:hover {color: #06D85F;}
 
-.popup .content {
-  max-height: 30%;
-  overflow: auto;
-}
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  .navbar-nav {
+    --bs-nav-link-color: #a4c7f9;
+  }
+  
 
-.navbar-nav {
-  --bs-nav-link-color: #a4c7f9;
-}
-
-.titlewc {
+ .titlewc {
   padding-top: 60px;
-}
+ }
 
-.midle {
+ .midle {
   padding-top: 60px;
-}
-
-/*# sourceMappingURL=App.css.map */
+ }
+ 

@@ -1,32 +1,53 @@
-import React, { useState, useEffect, useRef } from "react";
-import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
-import Rating from "@mui/material/Rating";
-import { useParams } from "react-router-dom";
-import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import Filmlist from "../shared/ListOfFilms";
-
-export default function PlayersPresentation({ players }) {
+export default function PlayersPresentation() {
   const { id } = useParams();
+  const [film, setFilm] = useState(null);
 
-  const film = Filmlist.find((obj) => {
-    return obj.id == id;
-  });
-  //  gan link youtube
-  const [video, setVideo] = useState(film.src);
+  // Gọi API để lấy dữ liệu dựa trên id
+  useEffect(() => {
+    fetch(`https://6545916cfe036a2fa9546dff.mockapi.io/lab/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setFilm(data);
+      })
+      .catch((error) => {
+        console.error('Lỗi khi lấy dữ liệu từ API:', error);
+      });
+  }, [id]);
 
-  //tat mo popup
-  const [isOpen, setIsOpen] = useState(false);
-  const handleOpenPopup = () => {
-    setIsOpen(!isOpen);
+  const handleDeleteFilm = () => {
+    if (film) {
+      // Gửi yêu cầu xóa tới API bằng phương thức DELETE
+      fetch(`https://6545916cfe036a2fa9546dff.mockapi.io/lab/${film.id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("Phim đã được xóa thành công!");
+            alert("Xóa thành công");
+            // Thực hiện các hành động khác sau khi xóa phim thành công
+          } else {
+            console.error("Lỗi khi xóa phim");
+          }
+        })
+        .catch((error) => {
+          console.error("Lỗi khi gửi yêu cầu xóa:", error);
+        });
+    }
   };
+
+  if (!film) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container detail">
@@ -35,7 +56,7 @@ export default function PlayersPresentation({ players }) {
           <iframe
             width="100%"
             height="600"
-            src={film.video} // Đường link YouTube hoặc đường link đến video khác
+            src={film.video}
             title="Video Player"
             allowFullScreen
           />
@@ -43,7 +64,7 @@ export default function PlayersPresentation({ players }) {
 
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
-            {film.tilte}
+            {film.title}
           </Typography>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div className="card-detail" style={{ marginRight: "10px" }}>
@@ -61,27 +82,20 @@ export default function PlayersPresentation({ players }) {
               </Typography>
             </div>
             <div>
-              <Button variant="contained" color="success">
-                Success
+              <Button variant="contained" color="success" onClick={handleDeleteFilm}>
+                Delete
               </Button>
             </div>
+            <Link to={`/edit/${id}`}>Edit</Link>
+
           </div>
 
           <Typography variant="body2" color="text.secondary">
-            {film.info}
+            {film.detail}
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
-          <Button
-            size="small"
-            onClick={() => {
-              setVideo(video);
-              setIsOpen(true);
-            }}
-          >
-            Learn More
-          </Button>
         </CardActions>
       </Card>
     </div>
