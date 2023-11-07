@@ -1,40 +1,39 @@
-import React, { useState, Component } from "react";
-import { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
-import { colors } from "@mui/material";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import Icon from "@mui/material/Icon";
-// Thêm dòng import cho useContext
+import { Button, ButtonGroup, Typography } from "@mui/material";
+import { UserAuth } from "../context/AuthContext";
+import { ThemeContext } from "./ThemeContext";
 
 export default function Navigation() {
-  const [player, setPlayer] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
+  const { user, logOut } = UserAuth();
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  const hidePopup = () => {
-    setShowPopup(false);
+  const { theme, toggle } = useContext(ThemeContext);
 
-    if (!showPopup) window.location.href = "/#";
-  };
-
-  const { theme, toggle, dark } = useContext(ThemeContext);
   return (
     <div>
       <nav
         className="navbar navbar-expand-sm fixed-top"
         style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
       >
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
             <Link
               to={"/home"}
-              style={{ color: theme.color, textDecoration: `none` }}
+              style={{ color: theme.color, textDecoration: "none" }}
             >
               Xavia
             </Link>
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -42,16 +41,16 @@ export default function Navigation() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item active">
                 <a className="nav-link" href="#home">
                   <span className="fa fa-home fa-lg"></span>
                   <Link
                     to={"/home"}
-                    style={{ color: theme.color, textDecoration: `none` }}
+                    style={{ color: theme.color, textDecoration: "none" }}
                   >
                     Home
                   </Link>
@@ -62,7 +61,7 @@ export default function Navigation() {
                   <span className="fa fa-info fa-lg"></span>
                   <Link
                     to={"/info"}
-                    style={{ color: theme.color, textDecoration: `none` }}
+                    style={{ color: theme.color, textDecoration: "none" }}
                   >
                     Info
                   </Link>
@@ -73,50 +72,58 @@ export default function Navigation() {
                   <span className="fa fa-address-card fa-lg"></span>
                   <Link
                     to={"/contact"}
-                    style={{ color: theme.color, textDecoration: `none` }}
+                    style={{ color: theme.color, textDecoration: "none" }}
                   >
                     Contact
                   </Link>
                 </a>
               </li>
-              
             </ul>
             <a href="#" onClick={toggle}>
-                  <LightbulbIcon
-                    style={{ color: theme.color, textDecoration: `none` }}
-                  />
-                </a>
-            <form class="d-flex" role="search">
+              <LightbulbIcon
+                style={{ color: theme.color, textDecoration: "none" }}
+              />
+            </a>
+            <form className="d-flex" role="search">
               <input
-                class="form-control me-2"
+                className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button class="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
             </form>
-            <button
-              onClick={() => {
-                setPlayer(player);
-                setShowPopup(true);
-              }}
-              class="btn btn-outline-success"
-            >
+            <button className="btn btn-outline-success">
               <Link
-                    to={"/add"}
-                    style={{ color: theme.color, textDecoration: `none` }}
-                  >
-                    Create
-                  </Link>
+                to={"/add"}
+                style={{ color: theme.color, textDecoration: "none" }}
+              >
+                Create
+              </Link>
             </button>
-            <a href="#"></a>
+            <div className="user-name">
+              {user?.displayName && (
+                <Typography sx={{ color: "black" }}>{user.displayName}</Typography>
+              )}
+            </div>
+            <div className="button-log">
+              <ButtonGroup>
+                {user?.displayName ? (
+                  <Button onClick={handleSignOut}>Log Out</Button>
+                ) : (
+                  <Button sx={{ marginLeft: "10rem" }}>
+                    <Link to="/loginpage" style={{ textDecoration: "none" }}>
+                      Log In
+                    </Link>
+                  </Button>
+                )}
+              </ButtonGroup>
+            </div>
           </div>
         </div>
       </nav>
-
-      
     </div>
   );
 }

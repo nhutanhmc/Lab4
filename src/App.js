@@ -10,8 +10,10 @@ import Pagination from "./components/Pagination";
 import Bill from "./components/Bill";
 import Edit from "./components/Edit";
 import Add from "./components/Add";
+import Loginpage from "./components/Loginpage";
 import { Route, Routes } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import { AuthContextProvider } from './context/AuthContext';
 function App() {
   const appStyle = {
     backgroundImage: 'url("assets/images/hehe.jpg")',
@@ -27,6 +29,7 @@ function App() {
 
   return (
     <div style={appStyle}>
+      <AuthContextProvider>
       <Navigation className="App" />
       <Typography
         gutterBottom
@@ -46,6 +49,7 @@ function App() {
       <div className="midle">
         <Routes>
           <Route path="/contact" element={<Contact />} />
+          <Route path="/loginpage" element={<Loginpage />}></Route>
           <Route path="/add" element={<Add />} />
           <Route path="/bill/:id" element={<Bill />} />
           <Route path="/edit/:id" element={<Edit />} />
@@ -70,6 +74,7 @@ function App() {
         </Routes>
       </div>
         <Footer style={footerStyle} />
+        </AuthContextProvider>
     </div>
   );
 }
